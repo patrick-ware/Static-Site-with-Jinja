@@ -1,0 +1,74 @@
+
+	h1 {
+	font-family: 'Raleway', sans-serif;
+	font-size: 48pt;
+	}
+
+	.subtitle {
+	font-family: 'Rubik', sans-serif;
+	font-size: 20pt;
+	font-weight:500;
+	}
+
+	li {
+	font-family: 'Rubik', sans-serif;
+	font-size: 12pt;
+	}
+
+	.navbar-brand	{
+	font-family: 'Raleway', sans-serif;
+	font-size: 18pt;
+	}
+
+	.btn {
+	font-family: 'Rubik', sans-serif;
+	font-size: 20pt;
+	font-weight:700;
+	width:160px;
+	}
+
+	.section-header {
+	font-family: 'Raleway', sans-serif;
+	font-size: 30pt;
+	color: white;
+	text-align: right;
+	background-color:#707070;
+	}
+
+	.section-company {
+	font-family: 'Raleway', sans-serif;
+	font-size: 24pt;
+	font-weight: 600;
+	color: black;
+	}
+
+	.section-detail {
+	font-family: 'Rubik', sans-serif;
+	font-size: 18pt;
+	color: black;
+	}
+
+	.section-minor {
+	font-family: 'Rubik', sans-serif;
+	font-size: 14pt;
+	color: black;
+	margin-right: 300px;
+	}
+
+	.headshot {
+	border-radius:50%;
+	width:300px;
+	margin-top: 50px;
+	}
+
+	.email-address {
+	font-family: 'Raleway', sans-serif;
+	font-size: 18pt;
+	color: black;
+	margin-left: 300px;
+	margin-top:30px;
+	}
+
+	.container-2 {
+	margin:10px;
+	}
