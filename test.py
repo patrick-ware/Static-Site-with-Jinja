@@ -10,22 +10,29 @@ import os
 # name_only, extension = os.path.splitext(file_name)
 # print(name_only)
 
-pages = []
-all_html_files = glob.glob("./content/*.html")
-for page in all_html_files:
-    rel_path = os.path.relpath(page)
-    orig_dir = os.path.dirname(page)
-    output_dir = './docs/'
-    name_only, extension = os.path.splitext(file_name)
-    pages.append({
-        'filename': rel_path
-        'output': os.path.join(output_dir, name_only, extension),
-        'title': name_only,
-        'image_display': '',
-    })
+#pages = []
+#all_html_files = glob.glob("./content/*.html")
+#for page in all_html_files:
+#    rel_path = os.path.relpath(page)
+#    file_name = os.path.basename(page)
+#    orig_dir = os.path.dirname(page)
+#    output_dir = './docs/'
+#    name_only, extension = os.path.splitext(file_name)
+#    pages.append({
+#        'filename': rel_path,
+#        'output': os.path.join(output_dir, name_only + extension),
+#        'title': name_only,
+#        'image_display': '',
+#    })
 
-print(pages)
-
+#    
+#print(pages)
+#print(rel_path)
+#print(file_name)
+#print(orig_dir)
+#print(output_dir)
+#print(name_only)
+#print(extension)
 
 def read_page(filename):
     content = open(filename).read()

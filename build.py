@@ -1,3 +1,6 @@
+import glob
+import os
+
 def main():
     print("Building site...")
     for page in pages:
@@ -38,32 +41,22 @@ def write_data(webpage):
     combined_page = insert_content(webpage)
     open(output, 'w+').write(combined_page)
 
-pages = [    
-    {
-        'filename': './content/index.html',
-        'output': './docs/index.html',
-        'title': 'Patrick Ware',
-        'image_display': 'full'
-    },
-    {
-        'filename': './content/aboutme.html',
-        'output': './docs/aboutme.html',
-        'title': 'About Me',
-        'image_display': 'half'
-    },
-    {
-        'filename': './content/resume.html',
-        'output': './docs/resume.html',
-        'title': 'Resume',
-        'image_display': 'half'
-    },
-    {
-        'filename':'./content/contact.html',
-        'output': './docs/contact.html',
-        'title':'Contact',
-        'image_display': 'full'
-    }
-]
+
+pages = []
+all_html_files = glob.glob("./content/*.html")
+for page in all_html_files:
+    rel_path = os.path.relpath(page)
+    file_name = os.path.basename(page)
+    name_only, extension = os.path.splitext(file_name)
+    orig_dir = os.path.dirname(page)
+    output_dir = './docs/'
+    pages.append({
+        'filename': rel_path,
+        'output': os.path.join(output_dir, name_only + extension),
+        'title': name_only,
+        'image_display': '',
+    })
+
     
 if __name__ == "__main__":
     main()
