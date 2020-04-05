@@ -1,6 +1,7 @@
 import glob
 import os
 
+
 def main():
     print("Building site...")
     for page in pages:
@@ -9,10 +10,12 @@ def main():
         write_data(page)
     print("Site built")
 
-#Conditional statement used to insert title and add active page marker to appropriate pages
+
+# Conditional statement used to insert title and
+# add active page marker to appropriate pages
 def insert_header(webpage):
     title = webpage['title']
-    template = open('./templates/base.html').read()    
+    template = open('./templates/base.html').read()
 
     if title == 'Patrick Ware':
         custom_template = template.replace('{{title}}', webpage['title'])
@@ -21,12 +24,20 @@ def insert_header(webpage):
 
     return custom_template
 
-#Conditional statement used to correctly place content and modify pageground image based on image_display_value
+
+# Read in html pages 
+def read_page(webpage):
+    content = open(webpage['filename']).read()
+    return content
+
+
+# Conditional statement used to correctly place content and 
+# modify pageground image based on image_display_value
 def insert_content(webpage):
     filename = webpage['filename']
     image_display = webpage['image_display']
     custom_template = insert_header(webpage)
-    content = open(filename).read()
+    content = read_page(webpage)
 
     if image_display == 'half':
         combined_page = custom_template.replace('{{view}}', '50%').replace('{{content_halfpage}}', content).replace('{{content_fullpage}}','')
@@ -35,7 +46,8 @@ def insert_content(webpage):
     
     return combined_page
 
-#Combined_page value data passed to write_data function to write file to disk
+
+# Combined_page value data passed to write_data function to write file to disk
 def write_data(webpage):
     output = webpage['output']
     combined_page = insert_content(webpage)

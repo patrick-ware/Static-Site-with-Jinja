@@ -10,9 +10,9 @@ import os
 # name_only, extension = os.path.splitext(file_name)
 # print(name_only)
 
-#pages = []
-#all_html_files = glob.glob("./content/*.html")
-#for page in all_html_files:
+# pages = []
+# all_html_files = glob.glob("./content/*.html")
+# for page in all_html_files:
 #    rel_path = os.path.relpath(page)
 #    file_name = os.path.basename(page)
 #    orig_dir = os.path.dirname(page)
@@ -25,14 +25,14 @@ import os
 #        'image_display': '',
 #    })
 
-#    
-#print(pages)
-#print(rel_path)
-#print(file_name)
-#print(orig_dir)
-#print(output_dir)
-#print(name_only)
-#print(extension)
+
+# print(pages)
+# print(rel_path)
+# print(file_name)
+# print(orig_dir)
+# print(output_dir)
+# print(name_only)
+# print(extension)
 
 def read_page(filename):
     content = open(filename).read()
