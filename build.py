@@ -1,6 +1,6 @@
 import glob
 import os
-
+from jinja2 import Template
 
 def main():
     print("Building site...")
@@ -15,12 +15,15 @@ def main():
 # add active page marker to appropriate pages
 def insert_header(webpage):
     title = webpage['title']
-    template = open('./templates/base.html').read()
-
-    if title == 'Patrick Ware':
-        custom_template = template.replace('{{title}}', webpage['title'])
-    else:
-        custom_template = template.replace(webpage['title'], '>>'+webpage['title']).replace('{{title}}', webpage['title'])
+    base_html = open('./templates/base.html').read()
+    template = Template(base_html)
+    custom_template = template.render({
+        'title': title,
+})
+#    if title == 'Patrick Ware':
+#        custom_template = template.replace('{{title}}', webpage['title'])
+#    else:
+#        custom_template = template.replace(webpage['title'], '>>'+webpage['title']).replace('{{title}}', webpage['title'])
 
     return custom_template
 

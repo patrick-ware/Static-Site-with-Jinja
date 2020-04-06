@@ -1,5 +1,5 @@
-import glob
-import os
+# import glob
+# import os
 
 # all_html_files = glob.glob("./content/*.html")
 # print(all_html_files)
@@ -34,12 +34,22 @@ import os
 # print(name_only)
 # print(extension)
 
-def read_page(filename):
-    content = open(filename).read()
-    return content
+#def read_page(filename):
+#    content = open(filename).read()
+#    return content
 
 
-page_text = read_page("./content/resume.html")
+#page_text = read_page("./content/resume.html")
 
 
-print(page_text[0])
+#print(page_text[0])
+
+from jinja import Template
+index_html = open("./content/index.html").read()
+
+template_html = open("templatebase.html").read()
+template = Template(templates_html)
+template.render(
+    title = "Homepage",
+    content = index_html,
+)
