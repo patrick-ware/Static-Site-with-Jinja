@@ -20,11 +20,6 @@ def insert_header(webpage):
     custom_template = template.render({
         'title': title,
 })
-#    if title == 'Patrick Ware':
-#        custom_template = template.replace('{{title}}', webpage['title'])
-#    else:
-#        custom_template = template.replace(webpage['title'], '>>'+webpage['title']).replace('{{title}}', webpage['title'])
-
     return custom_template
 
 
@@ -37,11 +32,9 @@ def read_page(webpage):
 # Conditional statement used to correctly place content and 
 # modify pageground image based on image_display_value
 def insert_content(webpage):
-    filename = webpage['filename']
-    image_display = webpage['image_display']
-    custom_template = insert_header(webpage)
+    customer_template = insert_header(webpage)
+    custom_template = Template
     content = read_page(webpage)
-    print(content[4:12], filename)
 
     if content[4:12] == 'halfpage':
         combined_page = custom_template.replace('{{view}}', '50%').replace('{{content_halfpage}}', content).replace('{{content_fullpage}}','')
