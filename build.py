@@ -37,27 +37,10 @@ def insert_header(webpage):
 })
     return custom_template
 
-
-# Conditional statement used to correctly place content and 
-# modify pageground image based on image_display_value
-def insert_content(webpage):
-    pass
-#	filename = webpage['filename']
-#	image_display = webpage['image_display']
-#	custom_template = insert_header(webpage)
-#	content = open(filename).read()
-
-#	if image_display == 'half':
-#		combined_page = custom_template.replace('{{view}}', '50%').replace('{{content_halfpage}}', content).replace('{{content_fullpage}}','')
-#	else:
-#		combined_page = custom_template.replace('{{view}}', '100%').replace('{{content_fullpage}}', content).replace('{{content_halfpage}}','')
-#	
-#	return combined_page
-
 # Combined_page value data passed to write_data function to write file to disk
 def write_data(webpage):
     output = webpage['output']
-    combined_page = insert_header(webpage)
+    combined_page = insert_content(webpage)
     open(output, 'w+').write(combined_page)
 
 
