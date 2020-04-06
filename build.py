@@ -25,7 +25,7 @@ def insert_header(webpage):
     return custom_template
 
 
-# Read in html pages 
+# Read in content pages 
 def read_page(webpage):
     content = open(webpage['filename']).read()
     return content
@@ -38,8 +38,9 @@ def insert_content(webpage):
     image_display = webpage['image_display']
     custom_template = insert_header(webpage)
     content = read_page(webpage)
+    print(content[4:12], filename)
 
-    if image_display == 'half':
+    if content[4:12] == 'halfpage':
         combined_page = custom_template.replace('{{view}}', '50%').replace('{{content_halfpage}}', content).replace('{{content_fullpage}}','')
     else:
         combined_page = custom_template.replace('{{view}}', '100%').replace('{{content_fullpage}}', content).replace('{{content_halfpage}}','')
