@@ -24,13 +24,16 @@ def read_page(webpage):
 
 
 # Conditional statement used to insert title and
-# add active page marker to appropriate pages
+# does not currently add active page marker
 def insert_header(webpage):
     title = webpage['title']
     base_html = read_template()
+    content = read_page(webpage)
     template = Template(base_html)
     custom_template = template.render({
         'title': title,
+        'halfpage': content,
+        'view': '50%'
 })
     return custom_template
 
@@ -38,27 +41,30 @@ def insert_header(webpage):
 # Conditional statement used to correctly place content and 
 # modify pageground image based on image_display_value
 def insert_content(webpage):
-	filename = webpage['filename']
-	image_display = webpage['image_display']
-	custom_template = insert_header(webpage)
-	content = open(filename).read()
+    pass
+#	filename = webpage['filename']
+#	image_display = webpage['image_display']
+#	custom_template = insert_header(webpage)
+#	content = open(filename).read()
 
-	if image_display == 'half':
-		combined_page = custom_template.replace('{{view}}', '50%').replace('{{content_halfpage}}', content).replace('{{content_fullpage}}','')
-	else:
-		combined_page = custom_template.replace('{{view}}', '100%').replace('{{content_fullpage}}', content).replace('{{content_halfpage}}','')
-	
-	return combined_page
+#	if image_display == 'half':
+#		combined_page = custom_template.replace('{{view}}', '50%').replace('{{content_halfpage}}', content).replace('{{content_fullpage}}','')
+#	else:
+#		combined_page = custom_template.replace('{{view}}', '100%').replace('{{content_fullpage}}', content).replace('{{content_halfpage}}','')
+#	
+#	return combined_page
 
 # Combined_page value data passed to write_data function to write file to disk
 def write_data(webpage):
     output = webpage['output']
-    combined_page = insert_content(webpage)
+    combined_page = insert_header(webpage)
     open(output, 'w+').write(combined_page)
 
 
 pages = []
+
 all_html_files = glob.glob("./content/*.html")
+
 for page in all_html_files:
     rel_path = os.path.relpath(page)
     file_name = os.path.basename(page)
@@ -69,7 +75,7 @@ for page in all_html_files:
         'filename': rel_path,
         'output': os.path.join(output_dir, name_only + extension),
         'title': name_only,
-        'image_display': '',
+        'image_display': 'half'
     })
 
     
