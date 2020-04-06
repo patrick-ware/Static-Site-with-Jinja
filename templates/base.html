@@ -86,18 +86,10 @@
   <!--Background-->
 	<div class="view" style="background-image: url('./img/BigSur2.jpg'); background-repeat: no-repeat; background-size: cover;">
 		<div class="mask rgba-black-light d-flex justify-content-center align-items-center">
-        {% if image_display == fullpage %}		
-        {{ content_fullpage }}
-        {% else %}
-        {{ '' }}
-        {% endif %}
+            {{ fullpage }}
 		</div>
 	</div>
 
-    {% if image_display == halfpage %}		
-    {{ content_halfpage }}
-    {% else %}
-    {{ '' }}
-    {% endif %}
-</body>
+    {{ halfpage }}
+
 </html>

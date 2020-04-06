@@ -6,8 +6,8 @@ def main():
     print("Building site...")
     read_template()
     for page in pages:
+        read_page(page)
         insert_header(page)
-        insert_content(page)
         write_data(page)
     print("Site built")
 
@@ -40,7 +40,7 @@ def insert_header(webpage):
 # Combined_page value data passed to write_data function to write file to disk
 def write_data(webpage):
     output = webpage['output']
-    combined_page = insert_content(webpage)
+    combined_page = insert_header(webpage)
     open(output, 'w+').write(combined_page)
 
 
