@@ -4,6 +4,7 @@ from jinja2 import Template
 
 def main():
     print("Building site...")
+    read_template()
     for page in pages:
         insert_header(page)
         insert_content(page)
@@ -11,17 +12,10 @@ def main():
     print("Site built")
 
 
-# Conditional statement used to insert title and
-# add active page marker to appropriate pages
-def insert_header(webpage):
-    title = webpage['title']
+# Read in template
+def read_template():
     base_html = open('./templates/base.html').read()
-    template = Template(base_html)
-    custom_template = template.render({
-        'title': title,
-})
-    return custom_template
-
+    return base_html
 
 # Read in content pages 
 def read_page(webpage):
@@ -29,20 +23,32 @@ def read_page(webpage):
     return content
 
 
+# Conditional statement used to insert title and
+# add active page marker to appropriate pages
+def insert_header(webpage):
+    title = webpage['title']
+    base_html = read_template()
+    template = Template(base_html)
+    custom_template = template.render({
+        'title': title,
+})
+    return custom_template
+
+
 # Conditional statement used to correctly place content and 
 # modify pageground image based on image_display_value
 def insert_content(webpage):
-    customer_template = insert_header(webpage)
-    custom_template = Template
-    content = read_page(webpage)
+	filename = webpage['filename']
+	image_display = webpage['image_display']
+	custom_template = insert_header(webpage)
+	content = open(filename).read()
 
-    if content[4:12] == 'halfpage':
-        combined_page = custom_template.replace('{{view}}', '50%').replace('{{content_halfpage}}', content).replace('{{content_fullpage}}','')
-    else:
-        combined_page = custom_template.replace('{{view}}', '100%').replace('{{content_fullpage}}', content).replace('{{content_halfpage}}','')
-    
-    return combined_page
-
+	if image_display == 'half':
+		combined_page = custom_template.replace('{{view}}', '50%').replace('{{content_halfpage}}', content).replace('{{content_fullpage}}','')
+	else:
+		combined_page = custom_template.replace('{{view}}', '100%').replace('{{content_fullpage}}', content).replace('{{content_halfpage}}','')
+	
+	return combined_page
 
 # Combined_page value data passed to write_data function to write file to disk
 def write_data(webpage):
