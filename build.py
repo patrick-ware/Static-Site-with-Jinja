@@ -37,7 +37,8 @@ def insert_header(webpage):
     custom_template = template.render({
             'title': title,
             'content': content,
-            'view': '100%'
+            'image_display': image_display,
+            'view': '100%',
         })
 
     return custom_template
