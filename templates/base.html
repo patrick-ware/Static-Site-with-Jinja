@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-    {% if title == index %}
+    {% if title == 'index' %}
     <title>Patrick Ware</title>
     {% else %}
     <title>{{ title|title }}</title>
@@ -86,10 +86,17 @@
   <!--Background-->
 	<div class="view" style="background-image: url('./img/BigSur2.jpg'); background-repeat: no-repeat; background-size: cover;">
 		<div class="mask rgba-black-light d-flex justify-content-center align-items-center">
-            {{ fullpage }}
+            {% if image_display == 'full' %}            
+            {{ content }}
+            {% else %}
+            {{ '' }}
+            {% endif %}
 		</div>
 	</div>
-
-    {{ halfpage }}
+    {% if image_display == 'half' %}            
+    {{ content }}
+    {% else %}
+    {{ '' }}
+    {% endif %}
 
 </html>

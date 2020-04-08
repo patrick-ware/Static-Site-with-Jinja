@@ -2,6 +2,7 @@ import glob
 import os
 from jinja2 import Template
 
+
 def main():
     print("Building site...")
     read_template()
@@ -16,6 +17,7 @@ def main():
 def read_template():
     base_html = open('./templates/base.html').read()
     return base_html
+
 
 # Read in content pages and assign 'image_display' value
 def read_page(webpage):
@@ -34,17 +36,18 @@ def insert_header(webpage):
     if webpage['image_display'] == 'half':
         custom_template = template.render({
             'title': title,
-            'halfpage': content,
+            'content': content,
             'view': '50%'
-    })
+        })
     elif webpage['image_display'] == 'full':
         custom_template = template.render({
             'title': title,
-            'fullpage': content,
+            'content': content,
             'view': '100%'
-    })
-    
+        })
+
     return custom_template
+
 
 # Combined_page value data passed to write_data function to write file to disk
 def write_data(webpage):
@@ -70,7 +73,7 @@ for page in all_html_files:
         'image_display': ''
     })
 
-    
+
 if __name__ == "__main__":
     main()
 
