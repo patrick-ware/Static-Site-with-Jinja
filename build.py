@@ -30,17 +30,11 @@ def read_page(webpage):
 # does not currently add active page marker
 def insert_header(webpage):
     title = webpage['title']
+    image_display = webpage['image_display']
     base_html = read_template()
     content = read_page(webpage)
     template = Template(base_html)
-    if webpage['image_display'] == 'half':
-        custom_template = template.render({
-            'title': title,
-            'content': content,
-            'view': '50%'
-        })
-    elif webpage['image_display'] == 'full':
-        custom_template = template.render({
+    custom_template = template.render({
             'title': title,
             'content': content,
             'view': '100%'
