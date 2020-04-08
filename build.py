@@ -8,7 +8,7 @@ def main():
     read_template()
     for page in pages:
         read_page(page)
-        insert_header(page)
+        insert_content(page)
         write_data(page)
     print("Site built")
 
@@ -19,26 +19,25 @@ def read_template():
     return base_html
 
 
-# Read in content pages and assign 'image_display' value
+# Read in content pages and assign 'view' value
 def read_page(webpage):
     content = open(webpage['filename']).read()
-    webpage['image_display'] = content[4:8]
+    webpage['view'] = content[4:8]
     return content
 
 
-# Conditional statement used to insert title and
+# Conditional statement used to insert title BUT <__________
 # does not currently add active page marker
-def insert_header(webpage):
+def insert_content(webpage):
     title = webpage['title']
-    image_display = webpage['image_display']
+    view = webpage['view']
     base_html = read_template()
     content = read_page(webpage)
     template = Template(base_html)
     custom_template = template.render({
             'title': title,
             'content': content,
-            'image_display': image_display,
-            'view': '100%',
+            'view': view,
         })
 
     return custom_template
@@ -47,7 +46,7 @@ def insert_header(webpage):
 # Combined_page value data passed to write_data function to write file to disk
 def write_data(webpage):
     output = webpage['output']
-    combined_page = insert_header(webpage)
+    combined_page = insert_content(webpage)
     open(output, 'w+').write(combined_page)
 
 
@@ -65,11 +64,9 @@ for page in all_html_files:
         'filename': rel_path,
         'output': os.path.join(output_dir, name_only + extension),
         'title': name_only,
-        'image_display': ''
+        'view': '',
     })
 
 
 if __name__ == "__main__":
     main()
-
-
