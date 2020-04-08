@@ -17,9 +17,10 @@ def read_template():
     base_html = open('./templates/base.html').read()
     return base_html
 
-# Read in content pages 
+# Read in content pages and assign 'image_display' value
 def read_page(webpage):
     content = open(webpage['filename']).read()
+    webpage['image_display'] = content[4:8]
     return content
 
 
@@ -30,11 +31,19 @@ def insert_header(webpage):
     base_html = read_template()
     content = read_page(webpage)
     template = Template(base_html)
-    custom_template = template.render({
-        'title': title,
-        'halfpage': content,
-        'view': '50%'
-})
+    if webpage['image_display'] == 'half':
+        custom_template = template.render({
+            'title': title,
+            'halfpage': content,
+            'view': '50%'
+    })
+    elif webpage['image_display'] == 'full':
+        custom_template = template.render({
+            'title': title,
+            'fullpage': content,
+            'view': '100%'
+    })
+    
     return custom_template
 
 # Combined_page value data passed to write_data function to write file to disk
@@ -58,7 +67,7 @@ for page in all_html_files:
         'filename': rel_path,
         'output': os.path.join(output_dir, name_only + extension),
         'title': name_only,
-        'image_display': 'half'
+        'image_display': ''
     })
 
     
