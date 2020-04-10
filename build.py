@@ -31,6 +31,7 @@ def read_page(webpage):
 def insert_content(webpage):
     title = webpage['title']
     view = webpage['view']
+    url = webpage['output']
     base_html = read_template()
     content = read_page(webpage)
     template = Template(base_html)
@@ -38,6 +39,8 @@ def insert_content(webpage):
             'title': title,
             'content': content,
             'view': view,
+            'url': url,
+            'pages':pages,
         })
 
     return custom_template
