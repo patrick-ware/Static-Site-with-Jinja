@@ -1,3 +1,8 @@
+import glob
+import os
+from jinja2 import Template
+
+
 # Read in template
 def read_template():
     base_html = open('./templates/base.html').read()
@@ -22,7 +27,7 @@ def insert_content(webpage):
             'title': title,
             'content': content,
             'view': view,
-            'pages':pages,
+            'pages': pages,
         })
 
     return custom_template

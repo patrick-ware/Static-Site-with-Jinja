@@ -1,15 +1,13 @@
-import glob
-import os
-from jinja2 import Template
+import utils
 
 
 def main():
     print("Building site...")
-    read_template()
-    for page in pages:
-        read_page(page)
-        insert_content(page)
-        write_data(page)
+    utils.read_template()
+    for page in utils.pages:
+        utils.read_page(page)
+        utils.insert_content(page)
+        utils.write_data(page)
     print("Site built")
 
 
