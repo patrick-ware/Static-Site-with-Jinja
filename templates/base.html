@@ -8,7 +8,7 @@
     {% if title == 'index' %}
     <title>Patrick Ware</title>
     {% else %}
-    <title>{{ title|title }}</title>
+    <title>{{ title|replace("_", " ")|title }}</title>
     {% endif %}
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
