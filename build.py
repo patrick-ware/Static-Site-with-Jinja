@@ -37,7 +37,7 @@ def insert_content(webpage):
             'title': title,
             'content': content,
             'view': view,
-            'pages':pages,
+            'pages': pages,
         })
 
     return custom_template
