@@ -59,7 +59,7 @@
                     {% for page in pages %}
                         {% if page.title != 'index' %}
 					        <li class="nav-item-active">
-						        <a class="nav-link" href="{{ page.url }}">{{ page.title|title }}</a>
+						        <a class="nav-link" href="{{ page.output }}">{{ page.title|title }}</a>
 					        </li>
                         {% endif %}
                     {% endfor %}
