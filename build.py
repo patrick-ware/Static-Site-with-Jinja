@@ -31,7 +31,6 @@ def read_page(webpage):
 def insert_content(webpage):
     title = webpage['title']
     view = webpage['view']
-    output = webpage['output']
     base_html = read_template()
     content = read_page(webpage)
     template = Template(base_html)
@@ -64,6 +63,7 @@ for page in all_html_files:
     output_dir = './docs/'
     pages.append({
         'filename': rel_path,
+        'url': name_only + extension,
         'output': os.path.join(output_dir, name_only + extension),
         'title': name_only,
         'view': '',
