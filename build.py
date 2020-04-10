@@ -26,8 +26,7 @@ def read_page(webpage):
     return content
 
 
-# Conditional statement used to insert title BUT <__________
-# does not currently add active page marker
+# Insert content and format page
 def insert_content(webpage):
     title = webpage['title']
     view = webpage['view']

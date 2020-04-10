@@ -57,9 +57,13 @@
 				<!-- Left -->
 				<ul class="navbar-nav mr-auto">
                     {% for page in pages %}
-                        {% if page.title != 'index' %}
+                        {% if page.title != 'index' and page['title'] == title %}
 					        <li class="nav-item-active">
-						        <a class="nav-link" href="{{ page.url }}">{{ page.title|title }}</a>
+						        <a class="nav-link" href="{{ page.url }}">{{ page.title|replace("_", " ")|title }}</a>
+					        </li>
+                        {% elif page.title != 'index' and page.title != title %}
+                            <li class="nav-item">
+						        <a class="nav-link" href="{{ page.url }}">{{ page.title|replace("_", " ")|title }}</a>
 					        </li>
                         {% endif %}
                     {% endfor %}
