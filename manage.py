@@ -12,6 +12,6 @@ if command == "build":
 elif command == "new":
     print("New page was specified")
     title = input("Choose a title for new page:")
-
+    utils.new_page(title)
 # need to add a create an "add page" func to utils
 
