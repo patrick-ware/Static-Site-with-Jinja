@@ -50,29 +50,30 @@ def write_data(webpage):
     open(output, 'w+').write(combined_page)
 
 
-def new_page(title):
+# Create new page from command line
+def new_page(sanitized_title, title):
     output_dir = './content'
-    output = os.path.join(output_dir, title + '.html')
+    output = os.path.join(output_dir, sanitized_title + '.html')
     new_page_content = "<!--050%-->" + '''
-	    <!--Content-->
-	    <div class="container-2">
-		    <div class="row">
-			    <div class="col">
-				    <div class="section-header" style="margin-top:50px;">'''+ title +'''
+        <!--Content-->
+        <div class="container-2">
+            <div class="row">
+                <div class="col">
+                    <div class="section-header" style="margin-top:50px;">''' + title + '''
                     </div>
-			    </div>
-			    <div class="col">
-				    <div class="section-detail" style="margin-top:60px;">New Content 
-				    </div>
-			    </div>
-			    <div class="col">
-				    <div class="section-detail" style="margin-top:60px;">New Content 
-				    </div>
-			    </div>
-		    </div>
-        ''' 
+                </div>
+                <div class="col">
+                    <div class="section-detail" style="margin-top:60px;">New Content
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="section-detail" style="margin-top:60px;">New Content
+                    </div>
+                </div>
+            </div>
+        '''
     open(output, 'w+').write(new_page_content)
-    
+
 
 pages = []
 
