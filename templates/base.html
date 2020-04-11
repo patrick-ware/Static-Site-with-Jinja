@@ -5,7 +5,11 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>{{ title|title }}</title>
+    {% if title == 'index' %}
+    <title>Patrick Ware</title>
+    {% else %}
+    <title>{{ title|replace("_", " ")|title }}</title>
+    {% endif %}
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
 	<!-- Bootstrap core CSS -->
@@ -27,7 +31,7 @@
       }f
     }
 	.view {
-	height:{{view}}
+	height:{{ view }}
 	}
   </style>
 </head>
@@ -52,15 +56,17 @@
 
 				<!-- Left -->
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item">
-						<a class="nav-link" href="./aboutme.html">About Me</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="./resume.html">Resume</a>
-						</li>
-					<li class="nav-item">
-						<a class="nav-link" href="./contact.html">Contact</a>
-					</li>
+                    {% for page in pages %}
+                        {% if page.title != 'index' and page['title'] == title %}
+					        <li class="nav-item-active">
+						        <a class="nav-link" href="{{ page.url }}">{{ page.title|replace("_", " ")|title }}</a>
+					        </li>
+                        {% elif page.title != 'index' and page.title != title %}
+                            <li class="nav-item">
+						        <a class="nav-link" href="{{ page.url }}">{{ page.title|replace("_", " ")|title }}</a>
+					        </li>
+                        {% endif %}
+                    {% endfor %}
 				</ul>
 
 				<!-- Right -->
@@ -82,11 +88,12 @@
   <!--Background-->
 	<div class="view" style="background-image: url('./img/BigSur2.jpg'); background-repeat: no-repeat; background-size: cover;">
 		<div class="mask rgba-black-light d-flex justify-content-center align-items-center">
-		{{content_fullpage}}
+            {% if view == '100%' %}            
+                {{ content }}
+            {% endif %}
 		</div>
 	</div>
-
-{{content_halfpage}}
-
-</body>
+    {% if view == '050%' %}            
+         {{ content }}
+    {% endif %}
 </html>
